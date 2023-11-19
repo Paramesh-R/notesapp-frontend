@@ -12,6 +12,7 @@ const ProtectedRoute = () => {
     const [userEmail, setUserEmail] = useState("");
 
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function isTokenExpired() {
         // return expired true - when no cookies 
         if (!cookies) {
@@ -27,7 +28,7 @@ const ProtectedRoute = () => {
             return decodedToken.exp < (Date.now() / 1000);
         } else { /* Return Expired True when No token in cookies */
             console.log("Private Route - No token")
-            console.log(cookies,userEmail)
+            console.log(cookies, userEmail)
             return true;
         }
 
@@ -38,7 +39,8 @@ const ProtectedRoute = () => {
     useEffect(() => {
 
         if (cookies.token) {                      // token exists and expired -> SignIn
-            if (isTokenExpired(cookies.token)) {
+            const token_expired = () => isTokenExpired(cookies.token)
+            if (token_expired) {
                 navigate("/signIn");
             }
             else {
@@ -48,7 +50,7 @@ const ProtectedRoute = () => {
             console.log("No Token in Cookies");
             navigate("/signIn");
         }
-    }, [cookies.token, navigate])
+    },[cookies.token, isTokenExpired, navigate])
     // -----------------------------------------------------------
 
     /* Show OUTLET if valid token else SignIn Page */

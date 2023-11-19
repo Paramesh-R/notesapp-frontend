@@ -74,7 +74,7 @@ const ViewNote = () => {
         }
       }
       )
-  }, [id])
+  }, [cookies.token, id, navigate])
 
 
   return (

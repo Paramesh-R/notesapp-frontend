@@ -54,7 +54,7 @@ const EditNote = (props) => {
             }
         }
         )
-    }, [id])
+    }, [cookies.token, id])
 
 
 

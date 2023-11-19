@@ -20,24 +20,24 @@ const ViewNote = () => {
   const deletePost = async (_id) => {
     console.log('Delete button clicked' + _id)
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/notes/${_id}`,
-        {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" }
-        })
-        .catch(err => console.log(`Error while Deleting Post ${err}`))
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" }
+      })
+      .catch(err => console.log(`Error while Deleting Post ${err}`))
 
     if (response.ok) {
-        console.log(response)
-        // alert("Post Deleted Successfully")
-        toast.success("Note Deleted")
+      console.log(response)
+      // alert("Post Deleted Successfully")
+      toast.success("Note Deleted")
     } else {
-        console.log("Response not okay while Deleting Post");
+      console.log("Response not okay while Deleting Post");
     }
     window.location.reload(true);
     <Navigate to={'/dashboard'} />
 
 
-}
+  }
 
 
   useEffect(() => {
@@ -88,9 +88,9 @@ const ViewNote = () => {
                 <div className="d-flex flex-row bd-highlight mb-0">
                   {/* <div className="p-2 bd-highlight"><i className="bi bi-person"></i> {notes.author}</div> */}
                   {/* <div className="p-2 bd-highlight"><i className="bi bi-clock"></i> {formatRFC7231(new Date(postInfo.createdAt))}</div> */}
-                  <div className="p-2 bd-highlight"><i className="bi bi-clock"></i> {new Date(notes.createdAt).toDateString()} - {new Date(notes.createdAt).toLocaleTimeString()}</div>
+                  {/* <div className="p-2 bd-highlight"><i className="bi bi-clock"></i> {new Date(notes.createdAt).toDateString()} - {new Date(notes.createdAt).toLocaleTimeString()}</div> */}
                   {/* <div className="p-2 bd-highlight"><i className="bi bi-chat-dots"></i> {notes.comments.length}</div> */}
-                  <div className="p-2 bd-highlight"><i className="bi bi-eye"></i> {notes.viewCount}</div>
+                  {/* <div className="p-2 bd-highlight"><i className="bi bi-eye"></i> {notes.viewCount}</div> */}
                 </div>
                 <div className="d-flex flex-row bd-highlight mb-3">
                 </div>
@@ -118,9 +118,21 @@ const ViewNote = () => {
                     {/* <div className="p-2 bd-highlight">last modified:  {formatRFC7231(new Date(postInfo.lastmodifiedAt))}</div> */}
                     {/*  <p className="p-2 bd-highlight text-right">Last modified:  {new Date(postInfo.lastmodifiedAt).toDateString()} - {new Date(postInfo.lastmodifiedAt).toLocaleTimeString()}</p> */}
                     <div className="d-flex flex-row-reverse bd-highlight">
-                      <div className="p-2 mt-3 bd-highlight small">Last modified:  {new Date(notes.lastmodifiedAt).toDateString()} - {new Date(notes.lastmodifiedAt).toLocaleTimeString()}</div>
+                      <div className="p-2 mt-3 bd-highlight small">
+                        Last modified: <br/> 
+                        {new Date(notes.lastmodifiedAt).toDateString()} - {new Date(notes.lastmodifiedAt).toLocaleTimeString()}
+                      </div>
 
                     </div>
+                    <div className="d-flex flex-row-reverse bd-highlight">
+                      <div className="p-2 mt-3 bd-highlight small">
+                        Created At:<br/>
+                        {new Date(notes.createdAt).toDateString()} - {new Date(notes.createdAt).toLocaleTimeString()}
+                      </div>
+
+
+                    </div>
+
                   </section>
                 </div>
               </div>

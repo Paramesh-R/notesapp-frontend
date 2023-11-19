@@ -126,7 +126,7 @@ const EditNote = (props) => {
                                 </div>
 
 
-                                <div className="col-md-12 text-center mt-2">
+                                <div className="col-md-12 text-center mt-5">
                                     <button className="btn btn-success btn-lg " type="submit">Update Post</button>
                                 </div>
                                 <br />

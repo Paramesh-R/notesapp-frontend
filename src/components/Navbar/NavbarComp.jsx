@@ -1,9 +1,14 @@
 import { Icon } from '@iconify/react'
 import React, { useEffect, useState } from 'react'
 import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const NavbarComp = () => {
     const expand = "lg"
+
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     const [scrolled, setScrolled] = useState(false);
     useEffect(() => {
@@ -21,6 +26,15 @@ const NavbarComp = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    const [, , removeCookie] = useCookies(['token']);
+    const navigate = useNavigate();
+    const logoutOnClick = () => {
+        removeCookie("token")
+        navigate("/signIn");
+        toast.success("User Logged Out");
+        setIsLoggedIn(false);
+    }
 
     return (
         <>
@@ -55,7 +69,11 @@ const NavbarComp = () => {
                                     <Icon icon="system-uicons:create" className='me-1' /> Create Note
                                 </Nav.Link>
 
-                                <Nav.Link onClick={() => { }}>Logout</Nav.Link>
+                                {isLoggedIn
+                                    ? (<Nav.Link onClick={() => logoutOnClick()}>Logout</Nav.Link>)
+                                    : ("")
+                                }
+
                                 {/* <NavDropdown
                                     title="Account"
                                     id={`offcanvasNavbarDropdown-expand-${expand}`}

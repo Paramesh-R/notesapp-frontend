@@ -30,8 +30,16 @@ const SignUp = () => {
             const { data } = await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/api/users/register`,
                 { ...signUpPayload },
-                { withCredentials: true }
-            );
+                {
+                  headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json',
+                    // 'token': cookies.token,
+                  },
+                  withCredentials: false,
+                }
+              );
+              
 
             // console.log(data)
 
@@ -114,12 +122,12 @@ const SignUp = () => {
                                 </div>
                             </form>
                             <div className="m-3 text-center text-muted">
-                                    <small>
-                                        Existing User? <Link to={"/signIn"} className="text-muted">Sign In</Link>
-                                    </small>
-                                </div>
+                                <small>
+                                    Existing User? <Link to={"/signIn"} className="text-muted">Sign In</Link>
+                                </small>
+                            </div>
                         </AuthCard>
-                      
+
                     </div>
                 </div>
             </div>

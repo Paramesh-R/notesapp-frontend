@@ -126,11 +126,11 @@ const CreateNote = () => {
         <div className="card border-1 shadow my-5">
 
           {/* CARD BODY */}
-          <div className="card-bodyp-0">
+          <div className="card-body p-0">
 
             {/* Create Post Form   */}
             <form onSubmit={createNewNote}>
-              <div className="col-md-6 mx-4 text-left">
+              <div className="col-md-6 mx-4 mt-4 text-left">
                 {/* Title */}
                 <input
                   type="text"
@@ -145,7 +145,7 @@ const CreateNote = () => {
 
 
               </div>
-              <div className="col mx-4 border border-danger ">
+              <div className="col mx-4">
                 {/* DraftJS Editor */}
                 <DraftJsEditor
                   editorState={editorState}
@@ -156,7 +156,7 @@ const CreateNote = () => {
 
 
 
-              <div className="col-sm-6 col-md-12 text-center mt-2">
+              <div className="col-sm-6 col-md-12 text-center m-4">
                 <button className="btn btn-success btn-lg " type="submit">Create Post</button>
               </div>
 
